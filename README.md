@@ -1,3 +1,3 @@
 # umd-dining-hall-website
 
-## hi
+Github repo for the UMD dining hall nutrition facts website.
