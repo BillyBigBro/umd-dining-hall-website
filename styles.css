@@ -64,6 +64,35 @@ body {
   padding: 36px 16px 40px;
 }
 
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(16px);
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+.delay-1 {
+  animation-delay: 0.2s;
+}
+
+.delay-2 {
+  animation-delay: 0.4s;
+}
+
+.delay-3 {
+  animation-delay: 0.6s;
+}
+
 .hero-inner {
   max-width: 880px;
   text-align: center;
@@ -253,6 +282,9 @@ body {
   border-radius: 18px;
   padding: 20px;
   box-shadow: 0 20px 45px rgba(0, 0, 0, 0.35);
+  opacity: 0;
+  transform: translateY(16px);
+  animation: fadeInUp 0.6s ease forwards;
 }
 
 .details-title {

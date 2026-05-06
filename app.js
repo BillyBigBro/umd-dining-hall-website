@@ -167,14 +167,14 @@ function showDetails(item) {
   const servingSizeText = (item.serving_size || "").toLowerCase();
   const servingMatch = servingSizeText.match(/\d+(?:\.\d+)?/);
   const servingAmount = servingMatch ? Number.parseFloat(servingMatch[0]) : 0;
-  const ounces = servingSizeText.includes("oz") ? servingAmount : servingAmount;
+  const isOneOunce = servingSizeText.includes("oz") && servingAmount === 1;
 
   const calories = Number.parseFloat(item.calories) || 0;
   const protein = Number.parseFloat(item.protein_g) || 0;
   const totalFat = Number.parseFloat(item.total_fat_g) || 0;
   const satFat = Number.parseFloat(item.saturated_fat_g) || 0;
 
-  const calPerOunce = ounces > 0 ? calories / ounces : 0;
+  const calPerOunce = isOneOunce ? calories : 0;
   const calPerProtein = protein > 0 ? calories / protein : 0;
   const proteinPerFat = totalFat > 0 ? protein / totalFat : 0;
   const satFatPercent = totalFat > 0 ? (satFat / totalFat) * 100 : 0;
@@ -183,9 +183,9 @@ function showDetails(item) {
   const ratios = [
     {
       label: "Calories:OZ",
-      value: calPerOunce > 0 ? `${calPerOunce.toFixed(2)} cal/oz` : "-",
+      value: isOneOunce ? `${calPerOunce.toFixed(2)} cal/oz` : "-",
       subtitle: "How filling is this?",
-      gradient: calPerOunce > 0 ? getGradientForValue(calPerOunce, 30, 142) : null,
+      gradient: isOneOunce ? getGradientForValue(calPerOunce, 30, 142) : null,
     },
     {
       label: "Calories:Protein",
@@ -258,7 +258,7 @@ function showDetails(item) {
     .join("");
 
   details.innerHTML = `
-    <div class="details-card">
+    <div class="details-card fade-in-up">
       <h2 class="details-title">
         <a class="details-link" href="${item.url}" target="_blank" rel="noopener noreferrer">
           ${item.food_name}
