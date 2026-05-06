@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UMD Nutrition Facts</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="nav">
+        <a class="nav-link" href="#">Home</a>
+        <a class="nav-link" href="#">Rankings</a>
+        <a class="nav-link" href="#">About</a>
+      </nav>
+    </header>
+
+    <main class="hero">
+      <div class="hero-inner">
+        <h1 class="hero-title">UMD Nutrition Facts</h1>
+        <p class="hero-subtitle">Nutrition information for everything UMD serves!</p>
+
+        <div class="search-card">
+          <div class="search-row">
+            <input
+              id="searchInput"
+              class="search-input"
+              type="text"
+              placeholder=""
+              autocomplete="off"
+              aria-label="Search food name"
+            />
+            <button id="searchButton" class="search-button" aria-label="Search">
+              <span class="search-icon" aria-hidden="true"></span>
+            </button>
+          </div>
+          <div id="results" class="search-results" role="listbox"></div>
+        </div>
+      </div>
+    </main>
+
+    <section id="details" class="details" aria-live="polite"></section>
+
+    <script src="app.js"></script>
+  </body>
+</html>
