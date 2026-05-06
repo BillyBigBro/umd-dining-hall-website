@@ -69,6 +69,39 @@ body {
   text-align: center;
 }
 
+.about-layout {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 28px;
+  text-align: left;
+  margin: 0 auto;
+  max-width: 1400px;
+}
+
+.about-image {
+  width: min(640px, 60vw);
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+  object-fit: cover;
+}
+
+.about-subtitle {
+  font-size: clamp(56px, 8.5vw, 120px);
+  line-height: 1.25;
+}
+
+.page-title {
+  margin: 0 0 18px;
+  font-size: clamp(36px, 5vw, 62px);
+  line-height: 1.05;
+  font-weight: 700;
+  background: linear-gradient(90deg, var(--white), var(--yellow), var(--red));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
 .hero-title {
   margin: 0 0 18px;
   font-size: clamp(42px, 6vw, 74px);
@@ -172,6 +205,46 @@ body {
   max-width: 1100px;
   margin: 28px auto 40px;
   padding: 0 16px;
+}
+
+.ranking-section {
+  max-width: 1100px;
+  margin: 12px auto 40px;
+  padding: 0 16px;
+}
+
+.ranking-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.ranking-card {
+  background: #1a0b12;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 16px;
+  text-align: left;
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.35);
+}
+
+.ranking-rank {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+
+.ranking-name {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0 0 8px;
+}
+
+.ranking-meta {
+  color: var(--muted);
+  font-size: 14px;
 }
 
 .details-card {
@@ -341,5 +414,15 @@ body {
 
   .nutrition-table {
     font-size: 14px;
+  }
+
+  .about-layout {
+    flex-direction: column;
+    align-items: center;
+    text-align: left;
+  }
+
+  .about-image {
+    width: 100%;
   }
 }
