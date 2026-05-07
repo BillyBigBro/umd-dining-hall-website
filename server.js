@@ -1,4 +1,5 @@
 const express = require("express");
+const path = require("path");
 const cors = require("cors");
 const { Pool } = require("pg");
 
@@ -7,6 +8,8 @@ const port = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(express.json());
+
+app.use(express.static(path.join(__dirname)));
 
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
@@ -20,6 +23,10 @@ app.get("/api/health", async (req, res) => {
   } catch (error) {
     res.status(500).json({ ok: false, error: "Database connection failed" });
   }
+});
+
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "index.html"));
 });
 
 app.post("/api/searches", async (req, res) => {
