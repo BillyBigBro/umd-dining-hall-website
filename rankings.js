@@ -12,6 +12,7 @@ function renderRankings(target, items, emptyMessage) {
     .map((item, index) => {
       const name = item.food_name || "Unknown";
       const count = item.search_count ?? 0;
+      const label = count === 1 ? "search" : "searches";
       const url = item.url || "";
       const linkStart = url ? `<a class=\"details-link\" href=\"${url}\" target=\"_blank\" rel=\"noopener noreferrer\">` : "";
       const linkEnd = url ? "</a>" : "";
@@ -19,7 +20,7 @@ function renderRankings(target, items, emptyMessage) {
         <div class="ranking-card">
           <div class="ranking-rank">#${index + 1}</div>
           <div class="ranking-name">${linkStart}${name}${linkEnd}</div>
-          <div class="ranking-meta">${count} searches</div>
+          <div class="ranking-meta">${count} ${label}</div>
         </div>
       `;
     })
