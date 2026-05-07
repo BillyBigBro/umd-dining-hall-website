@@ -2,6 +2,7 @@ const searchInput = document.getElementById("searchInput");
 const searchButton = document.getElementById("searchButton");
 const results = document.getElementById("results");
 const details = document.getElementById("details");
+const API_BASE = "https://umd-dining-hall-website-production.up.railway.app";
 
 let foods = [];
 
@@ -280,6 +281,19 @@ function showDetails(item) {
   `;
 
   results.innerHTML = "";
+
+  fetch(`${API_BASE}/api/searches`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      food_name: item.food_name,
+      url: item.url,
+    }),
+  }).catch(() => {
+    // Ignore tracking failures on the client.
+  });
 }
 
 function normalize(text) {

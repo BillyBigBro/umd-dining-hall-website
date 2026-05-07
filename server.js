@@ -29,6 +29,12 @@ app.post("/api/searches", async (req, res) => {
   }
 
   try {
+    await pool.query(
+      `INSERT INTO search_events (food_name, url, searched_at)
+       VALUES ($1, $2, NOW())`,
+      [foodName, url || null]
+    );
+
     const result = await pool.query(
       `INSERT INTO search_counts (food_name, url, search_count, last_searched_at)
        VALUES ($1, $2, 1, NOW())
@@ -63,6 +69,24 @@ app.get("/api/top-searches", async (req, res) => {
     res.json({ items: result.rows });
   } catch (error) {
     res.status(500).json({ error: "Failed to fetch top searches" });
+  }
+});
+
+app.get("/api/top-searches-weekly", async (req, res) => {
+  const limit = Math.min(Number.parseInt(req.query.limit, 10) || 20, 100);
+  try {
+    const result = await pool.query(
+      `SELECT food_name, url, COUNT(*)::int AS search_count, MAX(searched_at) AS last_searched_at
+       FROM search_events
+       WHERE searched_at >= NOW() - INTERVAL '7 days'
+       GROUP BY food_name, url
+       ORDER BY search_count DESC, last_searched_at DESC
+       LIMIT $1`,
+      [limit]
+    );
+    res.json({ items: result.rows });
+  } catch (error) {
+    res.status(500).json({ error: "Failed to fetch weekly searches" });
   }
 });
 

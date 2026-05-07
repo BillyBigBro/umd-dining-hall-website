@@ -10,19 +10,26 @@
     <header class="site-header">
       <nav class="nav">
         <a class="nav-link" href="index.html">Home</a>
+        <a class="nav-link" href="rankings.html">Rankings</a>
         <a class="nav-link" href="about.html">About</a>
       </nav>
     </header>
 
     <main class="hero">
       <div class="hero-inner">
-        <h1 class="page-title">Top 10 Searches</h1>
-        <p class="hero-subtitle">Most searched dining hall items this week.</p>
+        <h1 class="page-title">Food Rankings</h1>
+        <p class="hero-subtitle">All-time and weekly search leaders.</p>
       </div>
     </main>
 
     <section class="ranking-section">
+      <h2 class="ranking-title">All-Time Top 10</h2>
       <div id="rankingGrid" class="ranking-grid" aria-live="polite"></div>
+    </section>
+
+    <section class="ranking-section">
+      <h2 class="ranking-title">Weekly Top 10</h2>
+      <div id="weeklyRankingGrid" class="ranking-grid" aria-live="polite"></div>
     </section>
 
     <script src="rankings.js"></script>
