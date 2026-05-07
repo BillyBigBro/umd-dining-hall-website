@@ -171,6 +171,7 @@ body {
   border: none;
   background: transparent;
   font-size: 20px;
+  font-family: inherit;
   outline: none;
   color: #1d0207;
   text-transform: lowercase;
@@ -249,38 +250,68 @@ body {
   color: var(--text);
 }
 
-.ranking-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 16px;
-}
-
-.ranking-card {
+.ranking-table {
+  width: 100%;
+  border-collapse: collapse;
   background: #1a0b12;
   border: 1px solid var(--border);
   border-radius: 16px;
-  padding: 16px;
-  text-align: left;
+  overflow: hidden;
   box-shadow: 0 16px 32px rgba(0, 0, 0, 0.35);
 }
 
-.ranking-rank {
-  font-size: 12px;
+.ranking-table th,
+.ranking-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid #3b1824;
+  text-align: left;
+}
+
+.ranking-table thead th {
   text-transform: uppercase;
   letter-spacing: 0.6px;
+  font-size: 12px;
   color: var(--muted);
-  margin-bottom: 6px;
+  background: #220c14;
+}
+
+.ranking-table tbody tr:nth-child(even) td {
+  background: #1e0c13;
+}
+
+.ranking-table tbody tr.ranking-top-1 td {
+  background: linear-gradient(90deg, rgba(255, 213, 32, 0.35), rgba(255, 213, 32, 0));
+}
+
+.ranking-table tbody tr.ranking-top-2 td {
+  background: linear-gradient(90deg, rgba(192, 192, 192, 0.4), rgba(192, 192, 192, 0));
+}
+
+.ranking-table tbody tr.ranking-top-3 td {
+  background: linear-gradient(90deg, rgba(255, 160, 32, 0.22), rgba(255, 160, 32, 0));
+}
+
+.ranking-rank {
+  width: 80px;
+  color: var(--muted);
+  font-weight: 700;
 }
 
 .ranking-name {
   font-size: 18px;
   font-weight: 700;
-  margin: 0 0 8px;
 }
 
 .ranking-meta {
   color: var(--muted);
   font-size: 14px;
+  text-align: right;
+}
+
+.ranking-empty {
+  padding: 18px 16px;
+  text-align: center;
+  color: var(--muted);
 }
 
 .details-card {

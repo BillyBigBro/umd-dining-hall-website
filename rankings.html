@@ -25,12 +25,30 @@
 
     <section class="ranking-section fade-in-up delay-2">
       <h2 class="ranking-title">All-Time Top 10</h2>
-      <div id="rankingGrid" class="ranking-grid" aria-live="polite"></div>
+      <table class="ranking-table" aria-live="polite">
+        <thead>
+          <tr>
+            <th>Rank</th>
+            <th>Item</th>
+            <th>Searches</th>
+          </tr>
+        </thead>
+        <tbody id="rankingGrid"></tbody>
+      </table>
     </section>
 
     <section class="ranking-section fade-in-up delay-3">
       <h2 class="ranking-title">Weekly Top 10</h2>
-      <div id="weeklyRankingGrid" class="ranking-grid" aria-live="polite"></div>
+      <table class="ranking-table" aria-live="polite">
+        <thead>
+          <tr>
+            <th>Rank</th>
+            <th>Item</th>
+            <th>Searches</th>
+          </tr>
+        </thead>
+        <tbody id="weeklyRankingGrid"></tbody>
+      </table>
     </section>
 
     <script src="rankings.js"></script>

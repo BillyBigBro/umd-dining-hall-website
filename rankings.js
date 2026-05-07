@@ -4,7 +4,11 @@ const API_BASE = "https://umd-dining-hall-website-production.up.railway.app";
 
 function renderRankings(target, items, emptyMessage) {
   if (!items || items.length === 0) {
-    target.innerHTML = `<div class="ranking-card">${emptyMessage}</div>`;
+    target.innerHTML = `
+      <tr>
+        <td class="ranking-empty" colspan="3">${emptyMessage}</td>
+      </tr>
+    `;
     return;
   }
 
@@ -14,14 +18,17 @@ function renderRankings(target, items, emptyMessage) {
       const count = item.search_count ?? 0;
       const label = count === 1 ? "search" : "searches";
       const url = item.url || "";
-      const linkStart = url ? `<a class=\"details-link\" href=\"${url}\" target=\"_blank\" rel=\"noopener noreferrer\">` : "";
+      const linkStart = url
+        ? `<a class=\"details-link\" href=\"${url}\" target=\"_blank\" rel=\"noopener noreferrer\">`
+        : "";
       const linkEnd = url ? "</a>" : "";
+      const highlightClass = index < 3 ? `ranking-top-${index + 1}` : "";
       return `
-        <div class="ranking-card">
-          <div class="ranking-rank">#${index + 1}</div>
-          <div class="ranking-name">${linkStart}${name}${linkEnd}</div>
-          <div class="ranking-meta">${count} ${label}</div>
-        </div>
+        <tr class="${highlightClass}">
+          <td class="ranking-rank">#${index + 1}</td>
+          <td class="ranking-name">${linkStart}${name}${linkEnd}</td>
+          <td class="ranking-meta">${count} ${label}</td>
+        </tr>
       `;
     })
     .join("");
@@ -36,7 +43,7 @@ async function loadRankings() {
     const data = await response.json();
     renderRankings(rankingGrid, data.items || [], "No searches yet.");
   } catch (error) {
-    rankingGrid.innerHTML = "<div class=\"ranking-card\">Rankings aren't working right now. Check back later!</div>";
+    rankingGrid.innerHTML = "<tr><td class=\"ranking-empty\" colspan=\"3\">Rankings aren't working right now. Check back later!</td></tr>";
   }
 }
 
@@ -49,7 +56,7 @@ async function loadWeeklyRankings() {
     const data = await response.json();
     renderRankings(weeklyRankingGrid, data.items || [], "No searches yet this week.");
   } catch (error) {
-    weeklyRankingGrid.innerHTML = "<div class=\"ranking-card\">Weekly rankings aren't working right now. Check back later!</div>";
+    weeklyRankingGrid.innerHTML = "<tr><td class=\"ranking-empty\" colspan=\"3\">Weekly rankings aren't working right now. Check back later!</td></tr>";
   }
 }
 
